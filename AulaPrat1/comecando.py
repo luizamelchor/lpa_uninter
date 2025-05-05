@@ -20,3 +20,4 @@
 #res = (s1 + ' ' + s2 + ' ') * 7 -> ant bat ant bat ant bat ant bat ant bat ant bat ant bat
 # res = (s2 + s2 + s3 + ' ') * 5 -> batbatcod batbatcod batbatcod batbatcod batbatcod
 # print(res)
+#Rebasing
