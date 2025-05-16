@@ -35,26 +35,26 @@ def escolha_servico(e_servico):
         preco += 0.2
     return preco
 
-def num_pagina(pagina, min, max):
-    preco = 0
+def num_pagina(pergunta_pagina, min, max):
+    paginas = 0
     while True:
         try:
-            p = int(input(pagina))
-            if ((p < min) or (p >= max)): #invalidar caso esteja fora de 0 a 20000
+            paginas = int(input(pergunta_pagina))
+            if ((paginas < min) or (paginas >= max)): #invalidar caso esteja fora de 0 a 20000
                 print('Não aceitamos esta quantidade de páginas.\nTente novamente usando um valor menor.')
             else:
-                if (p < 20):
-                    preco = p
-                elif (p >= 20) and (p < 200):
-                    preco = p * 0.85  # desconto de 15%
-                elif (p >= 200) and (p < 2000):
-                    preco = p * 0.8  # desconto de 20%
+                if (paginas < 20):
+                    paginas = paginas
+                elif (paginas >= 20) and (paginas < 200):
+                    paginas = paginas * 0.85  # desconto de 15%
+                elif (paginas >= 200) and (paginas < 2000):
+                    paginas = paginas * 0.8  # desconto de 20%
                 else:
-                    preco = p * 0.75  # desconto de 25%
+                    paginas = paginas * 0.75  # desconto de 25%
                 break
         except ValueError: #caso a resposta em forma string
             print('Você digitou usando letras. Tente novamente.')
-    return preco
+    return paginas
 
 def servico_extra(s_extra, min, max):
     # lista de serviços
@@ -95,7 +95,6 @@ servico = escolha_servico('Qual o serviço escolhido? ')
 paginas = num_pagina('Qual o número de páginas? ',0,20000)
 extra = servico_extra('Você gostaria dos nossos serviços adicionais? ', 0, 2)
 total = (servico * paginas) + extra
-print(f'Total: R${total}')
-# adicionar ao print acima: (serviço: {} * páginas: {} + extra: ')
+print(f'Total: R${total} (serviço: {servico} * páginas: {paginas}) + extra: {extra}')
 
 
