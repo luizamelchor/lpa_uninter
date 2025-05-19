@@ -10,11 +10,12 @@
 # 3. Remover Livro
 # 4. Encerrar Programa
 # ATÉ AULA 6
+
 lista_livro = []
 id_global = 0
 def cadastrar_livro(id):
     global id_global
-    id_global += 1
+    id_global += 1 #sempre aumenta o id em 1 automaticamente
     print()
     print('=' * 10, 'Cadastro de livros', '=' * 10)
     print(f'Id do livro: {id_global}')
@@ -25,13 +26,13 @@ def cadastrar_livro(id):
         'editora': input('Qual a editora do livro? ')
     }
     print('=' * 40)
-    lista_livro.append(dicio)
+    lista_livro.append(dicio) #adicina as alterações à lista_livro
     print(f'Livro cadastrado com sucesso!')
-    return
+    return #retorna ao menu principal
 
 def consultar_livro():
     print()
-    print('=' * 10, 'Consulta de livros', '=' * 10)
+    print('=' * 10, 'Consulta de livros', '=' * 10) #menu de consulta de livros
     print('1 - Consultar todos')
     print('2 - Consultar por id')
     print('3 - Consultar por autor')
@@ -40,7 +41,7 @@ def consultar_livro():
     consulta = int(input('Qual a consulta desejada? '))
 
     while True:
-        if (consulta < 1) or (consulta > 4):
+        if (consulta < 1) or (consulta > 4): #invalidando respostas
             print('Opção inválida. Tente novamente')
             consulta = int(input('Qual a consulta desejada? '))
         else:
@@ -52,33 +53,36 @@ def consultar_livro():
                     print(f"Autor: {livro['autor']}")
                     print(f"Editora: {livro['editora']}")
             elif consulta == 2: #livros por id
-                id = input('Digite o id do livro: ')
+                id_consulta = int(input('Digite o id do livro: '))
                 for id in lista_livro:
-                    print()
-                    print(f"Id: {id['id']}")
-                    print(f"Nome: {id['nome']}")
-                    print(f"Autor: {id['autor']}")
-                    print(f"Editora: {id['editora']}")
+                    if id['id'] == id_consulta: #usa o id da lista_livro
+                        print()
+                        print(f"Id: {id['id']}")
+                        print(f"Nome: {id['nome']}")
+                        print(f"Autor: {id['autor']}")
+                        print(f"Editora: {id['editora']}")
             elif consulta == 3: #livros por autor
-                autor = input('Digite o autor do livro: ')
+                autor_consulta = input('Digite o autor do livro: ')
                 for autor in lista_livro:
-                    print()
-                    print(f"Id: {autor['id']}")
-                    print(f"Nome: {autor['nome']}")
-                    print(f"Autor: {autor['autor']}")
-                    print(f"Editora: {autor['editora']}")
+                    if autor['autor'] == autor_consulta: #usa o autor da lista_livro
+                        print()
+                        print(f"Id: {autor['id']}")
+                        print(f"Nome: {autor['nome']}")
+                        print(f"Autor: {autor['autor']}")
+                        print(f"Editora: {autor['editora']}")
             else: #voltar ao menu principal
                 print('Retornando ao menu principal...')
             break
 
 def remover_livro():
     print()
-    print('=' * 10,'Removendo livro(s)','=' * 10)
+    print('=' * 10,'Removendo livro(s)','=' * 10) #menu de remoção de livros
     id_remover = int(input('Digite o id do livro a se remover: '))
-    for id_remover in lista_livro:
-        lista_livro.remove(id_remover)
-        print(f'Livro removido com sucesso!')
-    return
+    for id in lista_livro:
+        if id['id'] == id_remover:
+            lista_livro.remove(id)
+            print(f'Livro removido com sucesso!')
+    return #retorna ao menu principal
 
 #Programa Principal
 print('Bem vindo(a) a Livraria da Luíza Melchor Bisson da Costa')
@@ -92,7 +96,7 @@ while True:
     print('=' * 40)
     resposta = int(input('Qual opção você deseja explorar? '))
 
-    if (resposta < 1) or (resposta > 4):
+    if (resposta < 1) or (resposta > 4): #invalidando respostas
         print('Opção inválida. Tente novamente.')
         resposta = int(input('Qual opção você deseja explorar? '))
     else:
