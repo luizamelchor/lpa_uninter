@@ -17,7 +17,7 @@ elif (total >= 6000) and (total < 10000):
     desconto = total * 0.07 #desconto de 7%
 elif (total >= 10000):
     desconto = total * 0.11 #desconto de 11%
-else: #menor que 2500
+else: #menor que 2500 reais
     desconto = 0
 print(f'O valor total sem desconto é de: R${total}')
 print(f'O valor total com desconto é de: R${total - desconto}')

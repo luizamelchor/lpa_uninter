@@ -24,26 +24,26 @@ while True:
         continue #se inválido, o laço recomeça
 
     tam = input('Qual o tamanho (P, M ou G)? ')
-    if tam == 'P' or tam == 'M' or tam == 'G':
+    if tam == 'P' or tam == 'M' or tam == 'G': #validando tamanhos
         if tam == 'P':
-            if sabor == 'AC':
+            if sabor == 'AC': #açaí
                 preco = 11
                 total += preco
-            elif sabor == 'CP':
+            elif sabor == 'CP': #cupuaçu
                 preco = 9
                 total += preco
         if tam == 'M':
-            if sabor == 'AC':
+            if sabor == 'AC': #açaí
                 preco = 16
                 total += preco
-            elif sabor == 'CP':
+            elif sabor == 'CP': #cupuaçu
                 preco = 14
                 total += preco
         if tam == 'G':
-            if sabor == 'AC':
+            if sabor == 'AC': #açaí
                 preco = 20
                 total += preco
-            elif sabor == 'CP':
+            elif sabor == 'CP': #cupuaçu
                 preco = 18
                 total += preco
         print(f'Você pediu um {sabor} tamanho {tam}: R${preco}')
@@ -53,11 +53,11 @@ while True:
 
     continuar = input('Deseja pedir mais alguma coisa (S/N)? ')
     if continuar == 'S':
-        pass
+        pass #se a resposta é sim, vai para a linha de baixo
         continue #se válido, o laço recomeça para escolha de sabor
     else: #qualquer tecla além de "S"
         print('Sua compra foi finalizada!')
         print(f'O total da sua compra foi: R${total}')
-        break
+        break #encerra o programa
 
 

@@ -21,18 +21,27 @@
 # ATÉ AULA 5
 def escolha_servico(e_servico):
     preco = 0
-    servico = input(e_servico)
-    while servico not in ['DIG', 'ICO', 'IPB', 'FOT']:
-        print('Serviço inválido. Tente novamente.')
+    while True:
+        print()
+        print('Escolha um dos nossos serviços:')
+        print('DIG - Serviço de Digitalização')
+        print('ICO - Serviço de Impressão Colorida')
+        print('IPB - Serviço de Impressão Preto e Branco')
+        print('FOT - Serviço de Fotocópia')
+
         servico = input(e_servico)
-    if servico == 'DIG':
-        preco += 1.1
-    elif servico == 'ICO':
-        preco += 1
-    elif servico == 'IPB':
-        preco += 0.4
-    else:
-        preco += 0.2
+        if servico not in ['DIG', 'ICO', 'IPB', 'FOT']: #invalida serviços não existentes
+            print('Serviço inválido. Tente novamente.')
+        else:
+            if servico == 'DIG':
+                preco += 1.1 #R$1,10 por página para digitalizar
+            elif servico == 'ICO':
+                preco += 1 #R$1 por página para imprimir colorido
+            elif servico == 'IPB':
+                preco += 0.4 #R$0,40 por página para imprimir preto e branco
+            else:
+                preco += 0.2 #R$0,20 por página para fazer fotocópia
+            break
     return preco
 
 def num_pagina(pergunta_pagina, min, max):
@@ -54,7 +63,7 @@ def num_pagina(pergunta_pagina, min, max):
                 break
         except ValueError: #caso a resposta em forma string
             print('Você digitou usando letras. Tente novamente.')
-    return paginas
+    return paginas #páginas com desconto aplicado sobre quantidade de páginas
 
 def servico_extra(s_extra, min, max):
     # lista de serviços
@@ -65,7 +74,7 @@ def servico_extra(s_extra, min, max):
     while True:
         try:
             e = int(input(s_extra))
-            if (e < 0) or (e > 2):
+            if (e < 0) or (e > 2): #invalida serviços não existentes
                 print('O serviço escolhido é inválido. Tente novamente.')
             else:
                 if e == 1:
@@ -85,16 +94,11 @@ def servico_extra(s_extra, min, max):
 # Programa Principal
 
 print('Bem vindo(a) a Copiadora da Luíza Melchor Bisson da Costa')
-print('Escolha um dos nossos serviços:')
-print('DIG - Serviço de Digitalização')
-print('ICO - Serviço de Impressão Colorida')
-print('IPB - Serviço de Impressão Preto e Branco')
-print('FOT - Serviço de Fotocópia')
 
 servico = escolha_servico('Qual o serviço escolhido? ')
 paginas = num_pagina('Qual o número de páginas? ',0,20000)
 extra = servico_extra('Você gostaria dos nossos serviços adicionais? ', 0, 2)
-total = (servico * paginas) + extra
+total = (servico * paginas) + extra #fórmula exigida
 print(f'Total: R${total} (serviço: {servico} * páginas: {paginas}) + extra: {extra}')
 
 
