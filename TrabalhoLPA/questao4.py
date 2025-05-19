@@ -19,7 +19,7 @@ def cadastrar_livro(id):
     print()
     print('=' * 10, 'Cadastro de livros', '=' * 10)
     print(f'Id do livro: {id_global}')
-    dicio = {
+    dicio = { #características de cada livro
         'id': id_global,
         'nome': input('Qual o nome do livro? '),
         'autor': input('Qual o autor do livro? '),
@@ -31,20 +31,20 @@ def cadastrar_livro(id):
     return #retorna ao menu principal
 
 def consultar_livro():
-    print()
-    print('=' * 10, 'Consulta de livros', '=' * 10) #menu de consulta de livros
-    print('1 - Consultar todos')
-    print('2 - Consultar por id')
-    print('3 - Consultar por autor')
-    print('4 - Retornar ao menu')
-    print('=' * 40)
-    consulta = int(input('Qual a consulta desejada? '))
-
     while True:
-        if (consulta < 1) or (consulta > 4): #invalidando respostas
-            print('Opção inválida. Tente novamente')
+        print()
+        print('=' * 10, 'Consulta de livros', '=' * 10) #menu de consulta de livros
+        print('1 - Consultar todos')
+        print('2 - Consultar por id')
+        print('3 - Consultar por autor')
+        print('4 - Retornar ao menu principal')
+        print('=' * 40)
+        try:
             consulta = int(input('Qual a consulta desejada? '))
-        else:
+            if (consulta < 1) or (consulta > 4):  # invalidando respostas
+                print('Opção inválida. Tente novamente')
+                continue
+
             if consulta == 1: #todos os livros
                 for livro in lista_livro:
                     print()
@@ -73,16 +73,23 @@ def consultar_livro():
             else: #voltar ao menu principal
                 print('Retornando ao menu principal...')
             break
+        except ValueError: #entrada de uma letra
+            print('Entrada inválida. Tente novamente.')
 
 def remover_livro():
     print()
     print('=' * 10,'Removendo livro(s)','=' * 10) #menu de remoção de livros
-    id_remover = int(input('Digite o id do livro a se remover: '))
-    for id in lista_livro:
-        if id['id'] == id_remover:
-            lista_livro.remove(id)
-            print(f'Livro removido com sucesso!')
-    return #retorna ao menu principal
+    while True:
+        try:
+            id_remover = int(input('Digite o id do livro a se remover: '))
+            for id in lista_livro:
+                if id['id'] == id_remover:
+                        lista_livro.remove(id)
+                        print(f'Livro removido com sucesso!')
+                        return #retorna ao menu principal
+            print('Id válido. Tente novamente')
+        except ValueError: #entrada de uma letra
+            print('Entrada inválida. Tente novamente.')
 
 #Programa Principal
 print('Bem vindo(a) a Livraria da Luíza Melchor Bisson da Costa')
@@ -94,12 +101,12 @@ while True:
     print('3 - Remover livro')
     print('4 - Encerrar o programa')
     print('=' * 40)
-    resposta = int(input('Qual opção você deseja explorar? '))
-
-    if (resposta < 1) or (resposta > 4): #invalidando respostas
-        print('Opção inválida. Tente novamente.')
+    try:
         resposta = int(input('Qual opção você deseja explorar? '))
-    else:
+        if (resposta < 1) or (resposta > 4): #invalidando respostas
+            print('Opção inválida. Tente novamente.')
+            continue
+
         if resposta == 1:
             cadastrar_livro(id)
         elif resposta == 2:
@@ -109,6 +116,8 @@ while True:
         elif resposta == 4:
             print('Encerrando o programa...')
             break
+    except ValueError: #entrada de uma letra
+        print('Entrada inválida. Tente novamente.')
 
 # cadastrar ---------
 # nome: O Estranho Destino de Poison
